@@ -1,0 +1,57 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "debug.node.autoAttach": "off",
+    "files.exclude": {
+      "**/.git": true,
+      "**/.DS_Store": true,
+      ".vscode/": false,
+      ".idea": true,
+      "**/coverage": true,
+      "**/.webpack": true,
+      "**/.cache-loader": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/coverage": true,
+      "**/build": true,
+      "/public/node_modules": true,
+      "dist": true,
+      "node_modules": true,
+      "**/.webpack": true,
+      "**/.cache-loader": true
+    },
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
+      "source.fixAll": true
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "javascript.format.enable": false,
+    "eslint.enable": true,
+    "eslint.autoFixOnSave": true,
+    "eslint.alwaysShowStatus": true,
+    "prettier.trailingComma": "es5",
+    // The below will run eslint on save and turns off the other formatOnSave so that it doesn't double format
+    "eslint.validate": [
+      {
+        "language": "javascript",
+        "autoFix": true
+      },
+      {
+        "language": "typescript",
+        "autoFix": true
+      }
+    ],
+    "[javascript]": {
+      "editor.formatOnSave": false
+    },
+    "[typescript]": {
+      "editor.formatOnSave": false
+    }
+  }
+}

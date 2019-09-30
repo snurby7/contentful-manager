@@ -1,13 +1,10 @@
-import { logger } from "@shared";
-import { Request, Response, Router, Express } from "express";
-
+import { Router } from "express";
 import { ContentManager } from "src/entities";
 
 // Init shared
 const router = Router();
 const contentManager = new ContentManager();
 
-// Management Endpoints
 router.get("/:space_id/environment", async (req, res) => {
   const entries = await contentManager.getEnvironments(req.params.space_id);
   res.send(entries);
@@ -22,7 +19,8 @@ router.get("/:space_id/environment/:environment/entries", async (req, res) => {
   const { space_id, environment } = req.params;
   const entries = await contentManager.getEnvironmentEntries(
     space_id,
-    environment
+    environment,
+    req.body
   );
   res.send(entries);
 });
@@ -36,14 +34,22 @@ router.get("/spaces", async (req, res) => {
   res.send(namedSpaceIds);
 });
 
-router.post("/:space_id/entry/:entry_id/update", async (req, res) => {
+router.post("/:space_id/entry/:entry_id", async (req, res) => {
   const { entry_id, space_id } = req.params;
   const result = await contentManager.getEntry(space_id, entry_id, req.body);
   res.send(result);
 });
 
-/******************************************************************************
- *                                     Export
- ******************************************************************************/
+router.post("/:space_id/entry/:entry_id/update", async (req, res) => {
+  const { entry_id, space_id } = req.params;
+  const result = await contentManager.updateEntry(space_id, entry_id, req.body);
+  res.send(result);
+});
+
+router.post("/:space_id/entry/create/:content_type_id", async (req, res) => {
+  const { content_type_id, space_id } = req.params;
+  const result = await contentManager.createEntry(space_id, content_type_id, req.body);
+  res.send(result);
+});
 
 export default router;
