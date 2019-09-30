@@ -1,4 +1,4 @@
-import { ContentfulManagementToken } from "../../keys";
+import { ContentfulManagementToken } from "../../../keys";
 
 const contentfulImport = require("contentful-import");
 

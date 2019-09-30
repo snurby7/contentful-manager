@@ -1,14 +1,14 @@
 import { createClient, ClientAPI } from "contentful-management";
-import { ContentfulManagementToken } from "../../keys";
 import { Collection } from "contentful-management/typings/collection";
 import { Space } from "contentful-management/typings/space";
+import { ContentfulManagementToken } from "../../../keys";
 
 export class ContentManager {
   private client: ClientAPI;
 
   constructor() {
     this.client = createClient({
-      // This is the access token for this space. Normally you get the token in the Contentful web app
+      // This is the access token for this space. Normally you get the token   Cin the Contentful web app
       accessToken: ContentfulManagementToken
     });
   }
@@ -40,5 +40,16 @@ export class ContentManager {
     const space = await this.client.getSpace(spaceId);
     const entries = await space.getContentTypes();
     return entries.items;
+  }
+
+  public async getEntry(
+    spaceId: string,
+    entryId: string,
+    body: { environmentId: string }
+  ): Promise<any> {
+    const space = await this.client.getSpace(spaceId);
+    const environment = await space.getEnvironment(body.environmentId);
+    const entry = await environment.getEntry(entryId);
+    return entry;
   }
 }

@@ -1,5 +1,5 @@
-import { ContentfulManagementToken } from "../../keys";
-import { ContentfulExport } from "../mutations";
+import { ContentfulManagementToken } from "../../../keys";
+import { ContentfulExport } from "src/mutations";
 
 const contentfulExport = require("contentful-export");
 

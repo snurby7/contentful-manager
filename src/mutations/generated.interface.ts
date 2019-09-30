@@ -9,7 +9,7 @@ export interface EntriesEntity {
 }
 export interface Sys {
   space: SpaceOrEnvironmentOrCreatedByOrUpdatedByOrPublishedByOrContentTypeOrEnUSOrEnUSEntity;
-  id: string;
+  id: string | null;
   type: string;
   createdAt: string;
   updatedAt: string;
@@ -38,13 +38,13 @@ export interface Fields {
   steps: Steps;
 }
 export interface Name {
-  enUS: string;
+  ["en-US"]: string;
 }
 export interface Tag {
-  enUS: SpaceOrEnvironmentOrCreatedByOrUpdatedByOrPublishedByOrContentTypeOrEnUSOrEnUSEntity;
+  ["en-US"]: SpaceOrEnvironmentOrCreatedByOrUpdatedByOrPublishedByOrContentTypeOrEnUSOrEnUSEntity;
 }
 export interface Steps {
-  enUS?:
+  ["en-US"]?:
     | (SpaceOrEnvironmentOrCreatedByOrUpdatedByOrPublishedByOrContentTypeOrEnUSOrEnUSEntity)[]
     | null;
 }

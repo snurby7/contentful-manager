@@ -1,0 +1,4 @@
+node_modules
+dist
+keys/*.keys.ts
+contentful-export.json
