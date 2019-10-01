@@ -1,7 +1,12 @@
 // This was generated from the response of the export
 export interface ContentfulExport {
+  contentTypes: any[];
   entries?: EntriesEntity[] | null;
   assets?: (null)[] | null;
+  locales: any[];
+  webhooks: any[];
+  roles: any[];
+  editorInterfaces: any[];
 }
 export interface EntriesEntity {
   sys: Sys;

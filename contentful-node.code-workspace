@@ -25,6 +25,10 @@
       "**/.webpack": true,
       "**/.cache-loader": true
     },
+    "docthis.includeDescriptionTag": true,
+    "docthis.includeTypes": false,
+    "docthis.includeMemberOfOnClassMembers": false,
+    "docthis.includeMemberOfOnInterfaceMembers": false,
     "editor.codeActionsOnSave": {
       "source.organizeImports": true,
       "source.fixAll": true
