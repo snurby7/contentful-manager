@@ -1,4 +1,4 @@
 node_modules
 dist
 keys/*.keys.ts
-contentful-export.json
+contentful-export-data.json

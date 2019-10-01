@@ -1,10 +1,19 @@
 import { ContentfulExport } from 'src/mutations';
 import { ContentfulManagementToken } from '../../../keys';
 
-const contentfulExport = require('contentful-export');
-
+/**
+ * @description Wrapper around https://github.com/contentful/contentful-export
+ */
 export class ContentExport {
+  /**
+   * @description See the link above about what is expected
+   * @param query
+   * @returns
+   */
   public async exportDataByQuery(query: any): Promise<ContentfulExport> {
+    const contentfulExport = require('contentful-export');
+    console.log(contentfulExport);
+
     const result = await contentfulExport({
       ...this.getBaseQuery(),
       ...query,

@@ -10,7 +10,7 @@
   "dependencies": {
     "contentful-export": "^7.7.0",
     "contentful-import": "^7.6.0",
-    "contentful-management": "6.2.0-beta0",
+    "contentful-management": "5.11.2",
     "cookie-parser": "^1.4.4",
     "cross-env": "^6.0.0",
     "dotenv": "^8.1.0",
