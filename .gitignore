@@ -2,3 +2,4 @@ node_modules
 dist
 keys/*.keys.ts
 contentful-export-data.json
+duplicate-content-steps.md

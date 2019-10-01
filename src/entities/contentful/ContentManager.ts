@@ -86,7 +86,7 @@ export class ContentManager {
     spaceId: string,
     entryId: string,
     request: EnvironmentIdPayload
-  ): Promise<any> {
+  ): Promise<Entry> {
     const space = await this.client.getSpace(spaceId);
     const environment = await space.getEnvironment(request.environmentId);
     const entry = await environment.getEntry(entryId);

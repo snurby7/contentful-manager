@@ -10,7 +10,7 @@ export const removeTopLevelId = (
        * ! IMPORTANT NOTE: All content will still be linked.
        */
       const currentName = entry.fields.name['en-US'];
-      entry.fields.name['en-US'] = `${currentName}-duplicated`;
+      entry.fields.name['en-US'] = `${currentName}-imported`;
       entry.sys.id = null;
       return entry;
     });
