@@ -1,15 +1,13 @@
-import { ContentfulManagementToken } from "../../../keys";
-import { ContentfulExport } from "src/mutations";
+import { ContentfulExport } from 'src/mutations';
+import { ContentfulManagementToken } from '../../../keys';
 
-const contentfulExport = require("contentful-export");
+const contentfulExport = require('contentful-export');
 
 export class ContentExport {
-  constructor() {}
-
   public async exportDataByQuery(query: any): Promise<ContentfulExport> {
     const result = await contentfulExport({
       ...this.getBaseQuery(),
-      ...query
+      ...query,
     });
     return result;
   }
@@ -20,8 +18,8 @@ export class ContentExport {
    */
   private getBaseQuery() {
     return {
-      environmentId: "prod",
-      managementToken: ContentfulManagementToken
+      environmentId: 'prod',
+      managementToken: ContentfulManagementToken,
     };
   }
 }

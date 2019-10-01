@@ -1,2 +1,2 @@
-export * from "./generated.interface";
-export * from "./mutator";
+export * from './generated.interface';
+export * from './mutator';

@@ -1,2 +1,2 @@
-export * from "./contentful";
-export * from "./contracts";
+export * from './contentful';
+export * from './contracts';

@@ -38,13 +38,13 @@ export interface Fields {
   steps: Steps;
 }
 export interface Name {
-  ["en-US"]: string;
+  ['en-US']: string;
 }
 export interface Tag {
-  ["en-US"]: SpaceOrEnvironmentOrCreatedByOrUpdatedByOrPublishedByOrContentTypeOrEnUSOrEnUSEntity;
+  ['en-US']: SpaceOrEnvironmentOrCreatedByOrUpdatedByOrPublishedByOrContentTypeOrEnUSOrEnUSEntity;
 }
 export interface Steps {
-  ["en-US"]?:
+  ['en-US']?:
     | (SpaceOrEnvironmentOrCreatedByOrUpdatedByOrPublishedByOrContentTypeOrEnUSOrEnUSEntity)[]
     | null;
 }

@@ -1,10 +1,14 @@
-import { ClientAPI, createClient } from "contentful-management";
-import { Collection } from "contentful-management/typings/collection";
+import { ClientAPI, createClient } from 'contentful-management';
+import { Collection } from 'contentful-management/typings/collection';
 import { Entry } from 'contentful-management/typings/entry';
 import { QueryOptions } from 'contentful-management/typings/queryOptions';
-import { Space } from "contentful-management/typings/space";
-import { ContentfulManagementToken } from "../../../keys";
-import { CreateEntryPayload, EnvironmentIdPayload, UpdateEntryPayload } from '../contracts';
+import { Space } from 'contentful-management/typings/space';
+import { ContentfulManagementToken } from '../../../keys';
+import {
+  CreateEntryPayload,
+  EnvironmentIdPayload,
+  UpdateEntryPayload,
+} from '../contracts';
 
 export class ContentManager {
   private client: ClientAPI;
@@ -12,7 +16,7 @@ export class ContentManager {
   constructor() {
     this.client = createClient({
       // This is the access token for this space. Normally you get the token   Cin the Contentful web app
-      accessToken: ContentfulManagementToken
+      accessToken: ContentfulManagementToken,
     });
   }
 
@@ -23,13 +27,13 @@ export class ContentManager {
   public async getEnvironments(spaceId: string): Promise<string[]> {
     const space = await this.client.getSpace(spaceId);
     const environments = await space.getEnvironments();
-    return environments.items.map(item => item.name);
+    return environments.items.map((item) => item.name);
   }
 
   public async getEnvironmentEntries(
     spaceId: string,
     environmentId: string,
-    request: QueryOptions,
+    request: QueryOptions
   ): Promise<any> {
     const space = await this.client.getSpace(spaceId);
     const environment = await space.getEnvironment(environmentId);
@@ -62,16 +66,21 @@ export class ContentManager {
     const space = await this.client.getSpace(spaceId);
     const environment = await space.getEnvironment(requestBody.environmentId);
     const entry = await environment.getEntry(entryId);
-    Object.keys(entry.fields).forEach(fieldTypeName => {
-      if(requestBody.idMap[fieldTypeName]){
-        entry.fields[fieldTypeName]['en-US'].sys.id = requestBody.idMap[fieldTypeName];
+    Object.keys(entry.fields).forEach((fieldTypeName) => {
+      if (requestBody.idMap[fieldTypeName]) {
+        entry.fields[fieldTypeName]['en-US'].sys.id =
+          requestBody.idMap[fieldTypeName];
       }
-    })
-    const updatedEntry = await entry.update()
+    });
+    const updatedEntry = await entry.update();
     return updatedEntry;
   }
 
-  public async createEntry(spaceId: string, contentTypeId: string, payload: CreateEntryPayload) : Promise<any> {
+  public async createEntry(
+    spaceId: string,
+    contentTypeId: string,
+    payload: CreateEntryPayload
+  ): Promise<any> {
     const space = await this.client.getSpace(spaceId);
     const environment = await space.getEnvironment(payload.environmentId);
     const result = await environment.createEntry(contentTypeId, {
