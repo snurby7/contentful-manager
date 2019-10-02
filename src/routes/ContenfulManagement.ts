@@ -24,6 +24,23 @@ router.get('/:space_id/contentTypes/', async (req, res) => {
   res.send(entries);
 });
 
+router.post(
+  '/:space_id/environment/:environment/entries/publish',
+  async (req, res) => {
+    const { space_id, environment } = req.params;
+    await contentManager.publishEntries(space_id, environment, req.body);
+    res.send({ messsage: 'published records' });
+  }
+);
+router.post(
+  '/:space_id/environment/:environment/entries/unpublish',
+  async (req, res) => {
+    const { space_id, environment } = req.params;
+    await contentManager.unpublishEntries(space_id, environment, req.body);
+    res.send({ messsage: 'unpublished records' });
+  }
+);
+
 router.get('/:space_id/environment/:environment/entries', async (req, res) => {
   const { space_id, environment } = req.params;
   const entries = await contentManager.getEnvironmentEntries(

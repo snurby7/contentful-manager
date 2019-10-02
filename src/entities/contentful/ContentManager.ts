@@ -5,11 +5,7 @@ import { Entry } from 'contentful-management/typings/entry';
 import { QueryOptions } from 'contentful-management/typings/queryOptions';
 import { Space } from 'contentful-management/typings/space';
 import { ContentfulManagementToken } from '../../../keys';
-import {
-  CreateEntryPayload,
-  EnvironmentIdPayload,
-  UpdateEntryPayload,
-} from '../contracts';
+import { CreateEntryPayload, EnvironmentIdPayload, UpdateEntryPayload } from '../contracts';
 
 export class ContentManager {
   private client: ClientAPI;
@@ -60,6 +56,56 @@ export class ContentManager {
     const environment = await space.getEnvironment(environmentId);
     const entries = await environment.getEntries(request);
     return entries;
+  }
+
+  /**
+   * @description Method will take a query, loop all the items and publish them
+   * @param spaceId The contentful spaceId to use.
+   * @param environmentId The environment you wish to execute this on
+   * @param request Contains a filter request to get all the entries
+   */
+  public async publishEntries(
+    spaceId: string,
+    environmentId: string,
+    request: QueryOptions
+  ): Promise<void> {
+    const entries = await this.getEnvironmentEntries(
+      spaceId,
+      environmentId,
+      request
+    );
+    await entries.items.forEach(async (item, index) => {
+      console.log(`(${index}) - Publishing item ${item.sys.id}`);
+      if (!item.isPublished() && !item.isArchived()) {
+        await item.publish();
+        console.log(`(${index}) - Published item ${item.sys.id}`);
+      }
+    });
+  }
+
+  /**
+   * @description Method will take a query, loop all the items and unpublish them
+   * @param spaceId The contentful spaceId to use.
+   * @param environmentId The environment you wish to execute this on
+   * @param request Contains a filter request to get all the entries
+   */
+  public async unpublishEntries(
+    spaceId: string,
+    environmentId: string,
+    request: QueryOptions
+  ): Promise<void> {
+    const entries = await this.getEnvironmentEntries(
+      spaceId,
+      environmentId,
+      request
+    );
+    await entries.items.forEach(async (item, index) => {
+      console.log(`(${index}) - Unpublishing item ${item.sys.id}`);
+      if (item.isPublished()) {
+        await item.unpublish();
+        console.log(`(${index}) - Unpublished item ${item.sys.id}`);
+      }
+    });
   }
 
   /**
